@@ -17,9 +17,11 @@ const AdmissionForm = () => {
 	} = useForm();
 
 	const onSubmit = (data) => {
+		data.hscPoint = parseFloat(data.hscPoint)
+		data.sscPoint = parseFloat(data.sscPoint)
 		console.log(data)
 		axios
-			.post(`${process.env.REACT_APP_API_URL}/userInfo/`, data, {
+			.post(`${process.env.REACT_APP_API_URL}/userInfo/${loggedInUser?.mobileNumber}`, data, {
 				headers: {
 					Authorization: `${loggedInUser?.token}`,
 				},
